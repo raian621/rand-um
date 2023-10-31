@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"math/rand"
 	"net/http"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -15,7 +16,24 @@ import (
 func StartServer(host string) {
 	router := gin.Default()
 
-	router.GET("/:id/r", func(ctx *gin.Context) {
+	apiEngine := getApiEngine()
+	staticEngine := getStaticEngine()
+
+	router.GET("/*any", func(ctx *gin.Context) {
+		if match, _ := regexp.Match(`/.+/r\?.+`, []byte(ctx.Request.URL.Path)); match {
+			apiEngine.HandleContext(ctx)
+		} else {
+			staticEngine.HandleContext(ctx)
+		}
+	})
+
+	router.Run("0.0.0.0:8080")
+}
+
+func getApiEngine() *gin.Engine {
+	apiEngine := gin.New()
+	apiGroup := apiEngine.Group("/:id/r")
+	apiGroup.GET("/", func(ctx *gin.Context) {
 		fmt.Println("/random requested")
 		var randomValue string
 
@@ -32,8 +50,13 @@ func StartServer(host string) {
 
 		checkError(err)
 	})
+	return apiEngine
+}
 
-	router.Run("0.0.0.0:8080")
+func getStaticEngine() *gin.Engine {
+	staticEngine := gin.New()
+	staticEngine.Static("/", "./site/dist")
+	return staticEngine
 }
 
 func runQuery(queryMap *map[string]string) (randomValue string, err error) {
