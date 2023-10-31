@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Random Embeds</title>
   <meta property="og:type" content="{{.Type}}">
+  
+  {{if .Title}}
+  <title>{{.Title}}</title>
   <meta property="og:title" content="{{.Title}}" />
+  {{else}}
+  <title>{{.Title}}</title>
+  {{end}}
+
+  {{if .Description}}
   <meta property="og:description" content="{{.Description}}" />
+  {{end}}
+
+  {{if .ImageURL}}
+  <meta property="og:image" content="{{.ImageURL}}" />
+  {{end}}
 </head>
+<body>
+  {{if .Description}}
+  <h1>Your random value is {{.Description}}</h1>
+  {{end}}
+
+  {{if .ImageURL}}
+  <img src="{{.ImageURL}}"/>
+  {{end}}
+</body>
 </html>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 
+import './ListBuilder.css'
+
 function queryString(list: string[]): string {
   let qstring = "list="
   console.log(list)
@@ -35,14 +37,14 @@ function ListBuilder({ setQuery }:{
     } else if (index === 0) {
       newList = list.slice(1)
     } else {
-      newList = [...list.slice(0, index), ...list.slice(index + 1, -1)]
+      newList = [...list.slice(0, index), ...list.slice(index + 1)]
     }
 
     setList(newList)
   }
 
   return (
-    <>
+    <div className="listbuilder">
       <h2>List builder:</h2>
       { list.map((item,i) => 
           <ListItem 
@@ -55,7 +57,7 @@ function ListBuilder({ setQuery }:{
         )
       }
       <button onClick={() => setList([...list, ""])}>Add</button>
-    </>
+    </div>
   )
 }
 
@@ -66,14 +68,14 @@ function ListItem({listKey, value, updateListItem, deleteListItem} : {
   deleteListItem: (index: number) => void
 }) {
   return (
-    <>
-      <input 
+    <div className="listitem">
+      <input
         key={listKey}
         value={value}
         onChange={e => updateListItem(listKey, e.target.value)}
       />
       <button onClick={() => deleteListItem(listKey)}>Delete</button>
-    </>
+    </div>
   )
 }
 

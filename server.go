@@ -13,67 +13,62 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func StartServer(host string) {
+func StartServer(host, siteDir, protocol string) {
 	router := gin.Default()
 
 	apiEngine := getApiEngine()
-	staticEngine := getStaticEngine()
+	staticEngine := getStaticEngine(siteDir)
 
 	router.GET("/*any", func(ctx *gin.Context) {
-		fmt.Println(ctx.Request.URL.Path)
-
 		if match, _ := regexp.Match(`/.+/r.*`, []byte(ctx.Request.URL.Path)); match {
-			fmt.Println("matched")
 			apiEngine.HandleContext(ctx)
 		} else {
 			staticEngine.HandleContext(ctx)
 		}
 	})
 
-	router.Run("0.0.0.0:8080")
+	fmt.Printf("Hosting server on %s://%s\n", protocol, host)
+	router.Run(host)
 }
 
 func getApiEngine() *gin.Engine {
 	apiEngine := gin.New()
 	apiGroup := apiEngine.Group("/:id/r")
 	apiGroup.GET("/", func(ctx *gin.Context) {
-		fmt.Println("/random requested")
-		var randomValue string
-
-		fmt.Println("loading query values")
 		queryMap := make(map[string]string)
 		ctx.BindQuery(&queryMap)
-		randomValue, err := runQuery(&queryMap)
+		ogpFields, err := runQuery(&queryMap)
 		checkError(err)
 
-		sendRandomOgpEmbed(ctx, randomValue)
-
+		sendRandomOgpEmbed(ctx, ogpFields)
 		ctx.Header("Content-Type", "text/html")
-		fmt.Println("parsing templates")
-
 		checkError(err)
 	})
 	return apiEngine
 }
 
-func getStaticEngine() *gin.Engine {
+func getStaticEngine(siteDir string) *gin.Engine {
 	staticEngine := gin.New()
-	staticEngine.Static("/", "./site/dist")
+	staticEngine.Static("/", siteDir)
 	return staticEngine
 }
 
-func runQuery(queryMap *map[string]string) (randomValue string, err error) {
+func runQuery(queryMap *map[string]string) (ogpFields *OgpFields, err error) {
 	var hasQuery bool
+
+	ogpFields = &OgpFields{
+		Type:  "website",
+		Title: "Random Value:",
+	}
 
 	if val, ok := (*queryMap)["list"]; ok {
 		hasQuery = true
 		elements := strings.Split(val, ",")
-		fmt.Println(elements)
 
 		r := rand.Intn(int(len(elements)))
 
 		if err == nil {
-			randomValue = elements[r]
+			ogpFields.Description = elements[r]
 		}
 	}
 
@@ -90,7 +85,7 @@ func runQuery(queryMap *map[string]string) (randomValue string, err error) {
 		err = errors.Join(err, _err)
 
 		if err == nil {
-			randomValue = fmt.Sprint(r + int(start))
+			ogpFields.Description = fmt.Sprint(r + int(start))
 		}
 	}
 
@@ -98,19 +93,13 @@ func runQuery(queryMap *map[string]string) (randomValue string, err error) {
 		err = errors.New("no query parameters")
 	}
 
-	return randomValue, err
+	return ogpFields, err
 }
 
-func sendRandomOgpEmbed(ctx *gin.Context, randomValue string) error {
+func sendRandomOgpEmbed(ctx *gin.Context, ogpFields *OgpFields) error {
 	tmpl, err := template.ParseFiles("templates/ogp.tmpl")
 	checkError(err)
-	data := OgpFields{
-		Type:        "website",
-		Title:       "Random Value:",
-		Description: randomValue,
-	}
 
-	fmt.Println("sending response")
 	ctx.Status(http.StatusOK)
-	return tmpl.Execute(ctx.Writer, data)
+	return tmpl.Execute(ctx.Writer, ogpFields)
 }

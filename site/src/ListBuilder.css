@@ -1,0 +1,18 @@
+.listbuilder {
+  display: flex;
+  flex-direction: column;
+}
+
+.listitem {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+
+.listitem input {
+  width: 80%;
+}
+
+.listitem button {
+  width: 20%
+}

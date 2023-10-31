@@ -9,7 +9,7 @@ type OgpFields struct {
 	Title       string
 	Description string
 	URL         string
-	Image       string
+	ImageURL    string
 }
 
 func checkError(err error) {
