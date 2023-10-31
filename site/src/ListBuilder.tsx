@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 function queryString(list: string[]): string {
   let qstring = "list="
   console.log(list)
-  list.forEach((value, i) => {
+  list.forEach((value) => {
     console.log(value)
     if (value !== "")
       qstring += `${value},` 

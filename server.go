@@ -20,7 +20,10 @@ func StartServer(host string) {
 	staticEngine := getStaticEngine()
 
 	router.GET("/*any", func(ctx *gin.Context) {
-		if match, _ := regexp.Match(`/.+/r\?.+`, []byte(ctx.Request.URL.Path)); match {
+		fmt.Println(ctx.Request.URL.Path)
+
+		if match, _ := regexp.Match(`/.+/r.*`, []byte(ctx.Request.URL.Path)); match {
+			fmt.Println("matched")
 			apiEngine.HandleContext(ctx)
 		} else {
 			staticEngine.HandleContext(ctx)

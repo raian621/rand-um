@@ -26,16 +26,15 @@ function App() {
   )
 }
 
-function generateRandomString() {
-  // base64 encode a unix timestamp with some random bits appended to the end of
-  // it and presto: you have yourself a (questionably) universally unique string
-  const timestamp = Date.now()
-  const rawData = new Array<string>()
-  rawData[0] = String.fromCharCode(timestamp >> 24 & 0xff)
-  rawData[1] = String.fromCharCode(timestamp >> 16 & 0xff)
-  rawData[2] = String.fromCharCode(timestamp >> 8 & 0xff)
-  rawData[3] = String.fromCharCode(timestamp & 0xff)
-
-}
+// function generateRandomString() {
+//   // base64 encode a unix timestamp with some random bits appended to the end of
+//   // it and presto: you have yourself a (questionably) universally unique string
+//   const timestamp = Date.now()
+//   const rawData = new Array<string>()
+//   rawData[0] = String.fromCharCode(timestamp >> 24 & 0xff)
+//   rawData[1] = String.fromCharCode(timestamp >> 16 & 0xff)
+//   rawData[2] = String.fromCharCode(timestamp >> 8 & 0xff)
+//   rawData[3] = String.fromCharCode(timestamp & 0xff)
+// }
 
 export default App
