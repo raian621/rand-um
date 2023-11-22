@@ -6,12 +6,13 @@ export default function GeneratedURL({ uniqueString, refreshUniqueString, query 
   query: string
 }) {
   const url = `${document.URL}${uniqueString}/r?${query}`
-
+  
   return (
     <div className="generated-url">
-      <h3>{url}</h3>
+      <code>{url}</code>
       <button onClick={()=>{ navigator.clipboard.writeText(url) }}>Copy</button>
       <button onClick={()=>{ refreshUniqueString() }}>Refresh</button>
+      <a href={ url } target="_blank">Go</a>
     </div>
   )
 }

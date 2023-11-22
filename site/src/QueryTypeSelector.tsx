@@ -7,6 +7,7 @@ export default function QueryTypeSelector({ setQueryType } : {
     <select className="query-type-selector" onChange={e => setQueryType(e.target.value)}>
       <option value="range">Range</option>
       <option value="list">List</option>
+      <option value="images">Images</option>
     </select>
   )
 }

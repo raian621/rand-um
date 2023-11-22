@@ -4,7 +4,7 @@ dev:
 
 .PHONY: run
 run: randomizer-embed
-	./randomizer-embed localhost:8080 ./site/dist
+	./randomizer-embed localhost:8080 ./site/dist https
 
 randomizer-embed: build
 
@@ -21,7 +21,7 @@ deps-site:
 
 .PHONY: build-server
 build-server: deps-server
-	go build
+	cd server; go build
 
 .PHONY: deps-server
 deps-server:

@@ -4,6 +4,7 @@ import RangeBuilder from './RangeBuilder';
 import ListBuilder from './ListBuilder';
 import GeneratedURL from './GeneratedURL';
 import QueryTypeSelector from './QueryTypeSelector';
+import ImagesBuilder from './ImagesBuilder';
 
 function App() {
   const [randomQueryType, setRandomQueryType] = useState("range")
@@ -25,6 +26,7 @@ function App() {
       />
       { randomQueryType === "range" && <RangeBuilder setQuery={setQuery}/> }
       { randomQueryType === "list" && <ListBuilder setQuery={setQuery}/> }
+      { randomQueryType === "images" && <ImagesBuilder setQuery={setQuery}/> }
     </>
   )
 }
@@ -42,8 +44,6 @@ function generateUniqueString(timestamp: number) : string {
   for (let i = 4; i < rawData.length; i++) {
     rawData[i] = String.fromCharCode(Math.floor(Math.random() * 256))
   }
-
-  rawData.forEach(value => console.log(value.charCodeAt(0)))
 
   const rawString = rawData.join('')
   const base64string = btoa(rawString).replace(/\//g, '-')

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {{if .Title}}
+  <title>{{.Title}}</title>
+  {{else}}
+  <title>rand-um</title>
+  {{end}}
+
+  {{if .ImageURL}}
+  <meta name="twitter:image:src" content="{{.ImageURL}}">
+  {{end}}
+  <meta name="twitter:site" content="@rand-um">
+  <meta name="twitter:card" content="summary_large_image">
+  {{if .Title}}
+  <meta name="twitter:title" content="{{.Title}}">
+  {{end}}
+  {{if .Description}}
+  <meta name="twitter:description" content="{{.Description}}">
+  {{else}}
+  <meta name="twitter:description" content="No description?">
+  {{end}}
+  <meta property="og:type" content="{{.Type}}">
+  <meta property="og:site_name" content="rand-um">
+  {{if .Title}}
+  <meta property="og:title" content="{{.Title}}" />
+  {{end}}
+
+  {{if .Description}}
+  <meta property="og:description" content="{{.Description}}" />
+  {{end}}
+
+  {{if .ImageURL}}
+  <meta property="og:image" content="{{.ImageURL}}" />
+  {{end}}
+</head>
+<body style="margin: 0; width: 100vw; height: 100vh">
+  {{if .Description}}
+  <h1>Your random value is {{.Description}}</h1>
+  {{end}}
+
+  {{if .ImageURL}}
+  <img style="width: 100%" src="{{.ImageURL}}"/>
+  {{end}}
+</body>
+</html>

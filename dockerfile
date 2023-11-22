@@ -6,8 +6,8 @@ RUN npm run build
 
 FROM golang:1.21
 WORKDIR /src
-ADD . ./
+ADD ./server ./src
 RUN go build -o /bin/random-embedder
 COPY --from=build_site /src/dist /src/site
 ENV GIN_MODE=release
-CMD ["/bin/random-embedder", "0.0.0.0:8080", "/src/site"]
+CMD ["/bin/random-embedder", "0.0.0.0:8080", "/src/site", "https"]
