@@ -1,22 +1,5 @@
 import { useState } from "react"
-
-export function ListItem({listKey, value, setListItem, deleteListItem} : {
-  listKey: number,
-  value: string,
-  setListItem: (index: number, value: string) => void,
-  deleteListItem: (index: number) => void
-}) {
-  return (
-    <div className="listitem">
-      <input
-        key={listKey}
-        value={String(value)}
-        onChange={e => setListItem(listKey, e.target.value)}
-      />
-      <button onClick={() => deleteListItem(listKey)}>Delete</button>
-    </div>
-  )
-}
+import { ListItem } from "../components/ListItem"
 
 export function useList(itemList: Array<string>) : [
   Array<string>,
@@ -50,7 +33,7 @@ export function useList(itemList: Array<string>) : [
 
   const addListItem = () => setList([...list, ""])
 
-  let listItemComponents = list.map((item, index) => {
+  const listItemComponents = list.map((item, index) => {
     return <ListItem
       listKey={index}
       key={index}

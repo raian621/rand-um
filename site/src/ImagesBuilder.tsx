@@ -1,5 +1,9 @@
 import { useEffect } from "react"
 import { useList } from "./hooks/useList"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
+
+import './ListBuilder.css'
 
 function queryString(list: string[]): string {
   let qstring = "image="
@@ -22,9 +26,11 @@ export default function ImagesBuilder({ setQuery } : {
   useEffect(() => setQuery(queryString(list)), [list, setQuery])
 
   return (
-    <div className="imagebuilder">
+    <div className="listbuilder">
       { listItemComponents }
-      <button onClick={() => addListItem()}>Add</button>
+      <button onClick={() => addListItem()}>
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
     </div>
   )
 }

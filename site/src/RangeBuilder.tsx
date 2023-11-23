@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import './RangeBuilder.css'
+
 function RangeBuilder({setQuery} : {
   setQuery: React.Dispatch<React.SetStateAction<string>>
 }) {
@@ -19,22 +21,26 @@ function RangeBuilder({setQuery} : {
   useEffect(() => setQuery(`range=${start},${end}`), [start, end, setQuery])
 
   return (
-    <>
-      <label htmlFor="start">Start</label>
-      <input 
-        type="number"
-        name="start"
-        value={`${start}`}
-        onChange={handleFieldChange}
-      />
-      <label htmlFor="end">End</label>
-      <input 
-        type="number"
-        name="end"
-        value={`${end}`}
-        onChange={handleFieldChange}
-      />
-    </>
+    <div className="range-builder">
+      <div className="range-input">
+        <label htmlFor="start">Start</label>
+        <input 
+          type="number"
+          name="start"
+          value={`${start}`}
+          onChange={handleFieldChange}
+        />
+      </div>
+      <div className="range-input">
+        <label htmlFor="end">End</label>
+        <input 
+          type="number"
+          name="end"
+          value={`${end}`}
+          onChange={handleFieldChange}
+        />
+      </div>
+    </div>
   )
 }
 

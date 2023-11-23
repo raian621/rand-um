@@ -11,4 +11,4 @@ RUN ls -R
 RUN go build -o /bin/random-embedder
 COPY --from=build_site /src/dist /src/site
 ENV GIN_MODE=release
-CMD ["/bin/random-embedder", "0.0.0.0", "8000", "/src/site", "https"]
+CMD ["/bin/random-embedder", "-host=0.0.0.0", "-port=8000", "-static=/src/site", "-protocol=http"]

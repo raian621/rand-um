@@ -1,4 +1,14 @@
 .query-type-selector {
   font-size: 2.5rem;
   margin: 0 1rem;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.query-type-selector:hover {
+  background-color: #00000011;
+  border-radius: 5px;
 }

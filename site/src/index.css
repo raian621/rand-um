@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Comic Sans MS", "Comic Sans", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -8,6 +8,8 @@
   background-color: #ffffdd;
 
   --accent-color: #111111;
+  --fill-color: #1731b3;
+  --border-radius: 5px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,23 +40,29 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--fill-color);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 300ms;
 }
 button:hover {
-  border-color: #646cff;
+  filter: brightness(0.8)
 }
 button:focus,
-button:focus-visible {
+button:focus-visible {                              
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+select:focus,
+select:focus-visible {                              
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
 
 input {
   background-color: white;

@@ -1,0 +1,18 @@
+.range-builder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.range-input {
+  display: flex;
+  max-width: 100%;
+}
+
+.range-input label {
+  min-width: 4em;
+}
+
+.range-input input {
+  flex-grow: 1;
+}

@@ -13,9 +13,10 @@ function App() {
 
   return (
     <>
-      <h1>Generate a
+      <h1>
+        Random
         <QueryTypeSelector setQueryType={setRandomQueryType}/>
-      query URL</h1>
+        Query URL Generator</h1>
       <p>Since most social preview implementations cache social previews for 
       each URL, in order to ensure a unique query we have to provide a unique URL
       every time we want to create a new social preview.</p>

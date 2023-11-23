@@ -1,18 +1,22 @@
 .listbuilder {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .listitem {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin: 5px;
+  margin: 3px 0;
+  gap: 3px;
 }
 
 .listitem input {
-  width: 80%;
+  flex-grow: 1;
 }
 
 .listitem button {
-  width: 20%
+  background-color: #aa0000;
+  justify-content: center;
+  display: flex;
 }

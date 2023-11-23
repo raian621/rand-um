@@ -1,26 +1,72 @@
 .generated-url {
   font-family: 'Noto Sans Mono', monospace;
   display: flex;
-  justify-content: center;
-  gap: 5px;
-  padding: 5px;
+  align-items: center;
   border: solid black 2px;
   border-radius: 5px;
   max-width: 100%;
+  color: white;
+  background-color: var(--fill-color);
 }
 
-.generated-url code {
-  font-size: 1.5em;
+.generated-url button {
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  height: 40px;
+  width: 40px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: var(--fill-color);
+  cursor: pointer;
+  transition: all 300ms;
+  margin: 2.5px;
+}
+.generated-url button:hover {
+  filter: brightness(0.8)
+}
+.generated-url button:focus,
+.generated-url button:focus-visible {                              
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.url-wrapper {
   overflow: scroll;
-  max-width: 60%;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: left;
+}
+
+.url {
+  height: 45px;
+  line-height: 45px;
+  margin-left: 1em;
+  text-align: center;
+  font-family: monospace;
+  width: fit-content;
+  white-space: nowrap;
   text-wrap: nowrap;
 }
 
 .generated-url a {
+  height: 40px;
+  margin: 2.5px;
+  min-width: 40px;
+  align-items: center;
+  justify-content: center;
   display: flex;
-  background-color: blue;
+  background-color: var(--fill-color);
   border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-  vertical-align: middle;
+  align-items: center;
+  color: white;
+}
+
+.generated-url a:hover {
+  filter: brightness(0.8);
+  color: white;
+}
+.generated-url a:focus,
+.generated-url a:focus-visible {                              
+  outline: 4px auto -webkit-focus-ring-color;
 }

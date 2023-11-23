@@ -2,6 +2,8 @@ import { useEffect } from "react"
 
 import './ListBuilder.css'
 import { useList } from "./hooks/useList"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
 function queryString(list: string[]): string {
   let qstring = "list="
@@ -23,7 +25,9 @@ function ListBuilder({ setQuery }:{
     <div className="listbuilder">
       <h2>List builder:</h2>
       { listItemComponents }
-      <button onClick={() => addListItem()}>Add</button>
+      <button onClick={() => addListItem()}>
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
     </div>
   )
 }

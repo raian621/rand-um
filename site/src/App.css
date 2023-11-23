@@ -1,6 +1,5 @@
 #root {
-  max-width: min(calc(100vw - 4rem), 30em);
+  max-width: min(90vw, 50em);
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
