@@ -9,7 +9,7 @@ on:
     paths:
       - 'site/**'
     branches: [ "main" ]
-  workflow-dispatch:
+  workflow_dispatch:
 
 jobs:
   test:
