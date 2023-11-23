@@ -2,41 +2,38 @@ package main
 
 import (
 	"crypto/tls"
-	"fmt"
-	"os"
+	"flag"
 )
 
 func main() {
-	if len(os.Args) < 5 {
-		fmt.Printf("Usage: %s <host> <port> <site directory> <protocol(http|https)> [keyfile] [certfile]", os.Args[0])
-		os.Exit(1)
-	}
+	// if len(os.Args) < 5 {
+	// 	fmt.Printf("Usage: %s <host> <port> <site directory> <protocol(http|https)> [keyfile] [certfile]", os.Args[0])
+	// 	os.Exit(1)
+	// }
 
-	host := os.Args[1]
-	port := os.Args[2]
-	siteDir := os.Args[3]
-	protocol := os.Args[4]
+	var host, port, siteDir, protocol, certfile, keyfile string
+	var saveCerts bool
 
-	var keyfilePath, certfilePath string
-	if len(os.Args) > 5 && len(os.Args) != 7 {
-		fmt.Printf("Usage: %s <host> <port> <site directory> <protocol(http|https)> [keyfile] [certfile]", os.Args[0])
-		os.Exit(1)
-	} else if len(os.Args) == 7 {
-		keyfilePath = os.Args[5]
-		certfilePath = os.Args[6]
-	}
+	flag.StringVar(&host, "host", "0.0.0.0", "Address to host the server at")
+	flag.StringVar(&port, "port", "443", "TCP port to listen on")
+	flag.StringVar(&siteDir, "static", "../site/dist", "Path to files used for website")
+	flag.StringVar(&protocol, "protocol", "http", "Protocol to use on the server")
+	flag.StringVar(&certfile, "cert", "", "Protocol to use on the server")
+	flag.StringVar(&keyfile, "key", "", "Protocol to use on the server")
+	flag.BoolVar(&saveCerts, "save", false, "Save generated certs")
+	flag.Parse()
 
 	var tlsConfig *tls.Config
 	var err error
 	if protocol == "https" {
 		// generate self signed certs
-		if keyfilePath == "" && certfilePath == "" {
-			tlsConfig, err = GenerateSelfSignedCerts()
+		if keyfile == "" && certfile == "" {
+			tlsConfig, err = GenerateSelfSignedCerts(saveCerts)
 			if err != nil {
 				panic(err)
 			}
 		} else {
-			if tlsConfig, err = LoadTLSConfig(keyfilePath, certfilePath); err != nil {
+			if tlsConfig, err = LoadTLSConfig(keyfile, certfile); err != nil {
 				panic(err)
 			}
 		}
