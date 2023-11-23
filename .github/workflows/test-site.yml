@@ -20,12 +20,15 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Install dependencies
+        working-directory: site
         run: npm install
   
       - name: Check linting
+        working-directory: site
         run: npm run lint
 
       - name: Run tests and generate coverage report
+        working-directory: site
         run: npm test -- --coverage --run
         
       
