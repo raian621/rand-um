@@ -1,4 +1,4 @@
-import './QueryTypeSelector.css'
+import 'styles/QueryTypeSelector.css'
 
 export default function QueryTypeSelector({ setQueryType } : {
   setQueryType: React.Dispatch<React.SetStateAction<string>>

@@ -1,9 +1,9 @@
 import { useEffect } from "react"
-import { useList } from "./hooks/useList"
+import { useList } from "hooks/useList"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
-import './ListBuilder.css'
+import 'styles/ListBuilder.css'
 
 function queryString(list: string[]): string {
   let qstring = "image="

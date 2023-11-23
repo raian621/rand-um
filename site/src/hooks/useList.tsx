@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ListItem } from "../components/ListItem"
+import { ListItem } from "components/ListItem"
 
 export function useList(itemList: Array<string>) : [
   Array<string>,

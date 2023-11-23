@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import './RangeBuilder.css'
+import 'styles/RangeBuilder.css'
 
 function RangeBuilder({setQuery} : {
   setQuery: React.Dispatch<React.SetStateAction<string>>

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './GeneratedURL.css'
+import 'styles/GeneratedURL.css'
 import { faArrowUpRightFromSquare, faCopy, faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
 export default function GeneratedURL({ uniqueString, refreshUniqueString, query } : {
