@@ -18,13 +18,16 @@
   justify-content: center;
   display: flex;
   background-color: var(--fill-color);
+  color: white;
   cursor: pointer;
   transition: all 300ms;
   margin: 2.5px;
 }
+
 .generated-url button:hover {
   filter: brightness(0.8)
 }
+
 .generated-url button:focus,
 .generated-url button:focus-visible {                              
   outline: 4px auto -webkit-focus-ring-color;
