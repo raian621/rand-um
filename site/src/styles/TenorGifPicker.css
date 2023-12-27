@@ -46,6 +46,7 @@
   position: relative;
   align-items: center;
 }
+
 .tenor-search-box input {
   margin: var(--inner-margin);
   width: 100%;
@@ -62,6 +63,7 @@
   margin: 10px;
   background-size: 200% 200%;
   border-radius: 10px;
+  width: calc(100% - var(--inner-margin));
   animation: gradient 2s ease-in-out infinite;
 }
 

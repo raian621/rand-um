@@ -6,19 +6,20 @@ import QueryTypeSelector from './QueryTypeSelector';
 import ImagesBuilder from './ImagesBuilder';
 import GeneratedURL from 'components/GeneratedURL';
 import generateUniqueString from 'util/uniqueString';
+import { Header } from './components/Header';
 
 function App() {
-  const [randomQueryType, setRandomQueryType] = useState("range")
+  const [randomQueryType, setRandomQueryType] = useState("images")
   const [uniqueString, setUniqueString] = useState(generateUniqueString(Date.now()))
   const [query, setQuery] = useState("range=0,10")
 
   return (
     <>
-      <h1>
-        Random
-        <QueryTypeSelector setQueryType={setRandomQueryType}/>
-        Query URL Generator
-      </h1>
+      <Header/>
+      <h2>
+        Generate a link for a random
+        <QueryTypeSelector setQueryType={setRandomQueryType}/>:
+      </h2>
       <GeneratedURL
         uniqueString={uniqueString}
         refreshUniqueString={() => { setUniqueString(generateUniqueString(Date.now())) }}

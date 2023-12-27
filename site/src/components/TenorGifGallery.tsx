@@ -36,7 +36,7 @@ export function TenorGifGallery({ results, addListItem } : {
   } else {
     return (
       <div className="tenor-gif-gallery">
-        <h2>Sorry, no results...</h2>
+        <h2>Find the perfect GIFs using the search bar above</h2>
       </div>
     )
   }

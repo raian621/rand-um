@@ -23,7 +23,6 @@ function ListBuilder({ setQuery }:{
 
   return (
     <div className="listbuilder">
-      <h2>List builder:</h2>
       { listItemComponents }
       <button onClick={() => addListItem()}>
         <FontAwesomeIcon icon={faPlus} />

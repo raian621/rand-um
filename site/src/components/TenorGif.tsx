@@ -5,7 +5,7 @@ export function TenorGif({result, onClick} : {result: ResponseObject, onClick: M
   const [loading, setLoading] = useState(true)
 
   const { url, dims } = result.media_formats["gif"]
-  const [_, height] = dims
+  const [width, height] = dims
 
   return (
     <>
@@ -17,8 +17,9 @@ export function TenorGif({result, onClick} : {result: ResponseObject, onClick: M
       />
       <canvas
         className={loading ? "tenor-gif-placeholder" : "invisible" }
+        width={`${width}px`}
         height={`${height}px`}
-      ></canvas>
+      />
     </>
   )
 }
