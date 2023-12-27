@@ -1,14 +1,17 @@
-import { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { ChangeEvent, useMemo, useRef, useState } from 'react'
 import 'styles/TenorGifPicker.css'
 import { ResponseObject, TenorAPI } from '../util/tenor'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 const API_KEY = import.meta.env.VITE_TENOR_API_KEY
+const DELTA_MS_FOR_KEY_PRESS = 500
 
-export function TenorGifPicker() {
+export function TenorGifPicker({ addListItem } : { addListItem: (value?: string) => void}) {
   const [results, setResults] = useState<ResponseObject[]>([])
   const searchRef = useRef<HTMLInputElement|null>(null);
+  const lastKeyPress = useRef<number>(Date.now())
+
   const columns = useMemo(() => {
     if (searchRef) {
       return generateColumns(results)
@@ -17,22 +20,22 @@ export function TenorGifPicker() {
 
   const tenorAPI = new TenorAPI(API_KEY, "rand-um-client")
 
-  useEffect(() => {
-    console.log(results)
-  }, [results])
-
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length >= 2) {
-      tenorAPI.search({
-        q: e.target.value,
-        limit: 10,
-      }).then(response => {
-        if (response) {
-          console.log(response)
-          setResults(response.results)
+    lastKeyPress.current = Date.now()
+    setTimeout(() => {
+      if ((Date.now() - lastKeyPress.current) > DELTA_MS_FOR_KEY_PRESS-50) {
+        if (e.target.value.length >= 2) {
+          tenorAPI.search({
+            q: e.target.value,
+            limit: 10,
+          }).then(response => {
+            if (response) {
+              setResults(response.results)
+            }
+          })
         }
-      })
-    }
+      }
+    }, DELTA_MS_FOR_KEY_PRESS)
   }
 
   return (
@@ -41,15 +44,20 @@ export function TenorGifPicker() {
         <input ref={searchRef} placeholder="Search Tenor" autoComplete="on" onChange={handleSearchChange}/>
         <FontAwesomeIcon icon={faMagnifyingGlass}/>
       </div>
-      <div className="tenor-search-suggestions">
-      </div>
       <div className="tenor-gif-gallery">
         {columns && columns.map((column, i) => {
           return (
             <div key={i} className="tenor-gif-gallery-col">
               {column.map((result => {
                 return (
-                  <img className="tenor-gif" key={result.id} src={result.media_formats['gif'].url}/>
+                  <img
+                    className="tenor-gif"
+                    key={result.id}
+                    src={result.media_formats['gif'].url}
+                    onClick={() => {
+                      addListItem(result.media_formats['gif'].url)
+                    }}
+                  />
                 )
               }))}
             </div>
@@ -84,8 +92,6 @@ function generateColumns(results: ResponseObject[]): ResponseObject[][] {
     const [width, height] = result.media_formats['gif'].dims
     heights[minCol] += height / width
   })
-
-  console.log(columns)
 
   return columns
 }

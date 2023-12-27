@@ -1,6 +1,11 @@
 FROM node:alpine as build_site
+LABEL stage=build_react_site
 WORKDIR /src
+ARG VITE_TENOR_API_KEY
+ENV VITE_TENOR_API_KEY $VITE_TENOR_API_KEY
+RUN echo $VITE_TENOR_API_KEY
 ADD ./site /src
+RUN test -n "$VITE_TENOR_API_KEY"
 RUN npm i
 RUN npm run build
 

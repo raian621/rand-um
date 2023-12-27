@@ -4,7 +4,7 @@ import { ListItem } from "components/ListItem"
 export function useList(itemList: Array<string>) : [
   Array<string>,
   Array<JSX.Element>,
-  () => void
+  (value?: string) => void
 ] {
   const [list, setList] = useState(itemList)
 
@@ -31,7 +31,13 @@ export function useList(itemList: Array<string>) : [
     setList(newList)
   }
 
-  const addListItem = () => setList([...list, ""])
+  const addListItem = (value?: string) => {
+    if (value) {
+      setList([...list, value])
+    } else {
+      setList([...list, ""])
+    }
+  }
 
   const listItemComponents = list.map((item, index) => {
     return <ListItem

@@ -28,11 +28,13 @@ export default function ImagesBuilder({ setQuery } : {
 
   return (
     <div className="listbuilder">
-      { listItemComponents }
+      <div className="list">
+        { listItemComponents }
+      </div>
       <button onClick={() => addListItem()}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
-      <TenorGifPicker/>
+      <TenorGifPicker addListItem={addListItem}/>
     </div>
   )
 }

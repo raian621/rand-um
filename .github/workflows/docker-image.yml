@@ -1,4 +1,3 @@
-#
 name: Create and publish a Docker image
 
 on:
@@ -29,5 +28,7 @@ jobs:
 
       - name: Build and push image
         run: |
-          docker build . --tag ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
+          docker build . \
+            --build-arg "VITE_TENOR_API_KEY=${{ secrets.VITE_TENOR_API_KEY }}" \
+            --tag ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
           docker push ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest

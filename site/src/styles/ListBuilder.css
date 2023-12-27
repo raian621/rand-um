@@ -24,3 +24,8 @@
   justify-content: center;
   display: flex;
 }
+
+.list {
+  max-height: 30vh;
+  overflow: scroll;
+}
