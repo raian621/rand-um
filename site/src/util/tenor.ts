@@ -109,7 +109,7 @@ export type CategoryObject = {
   name: string
 }
 
-function addParams(url: URL, params: Object) {
+function addParams(url: URL, params: object) {
   Object.entries(params).forEach(tuple => {
     const [key, value] = tuple
     if (value !== undefined)
