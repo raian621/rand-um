@@ -10,6 +10,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -136,5 +137,7 @@ func sendRandomOgpEmbed(ctx *gin.Context, ogpFields *OgpFields) error {
 	checkError(err)
 
 	ctx.Status(http.StatusOK)
+	ctx.Header("Last-Modified", time.Now().Format(http.TimeFormat))
+
 	return tmpl.Execute(ctx.Writer, ogpFields)
 }

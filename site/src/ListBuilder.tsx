@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 import 'styles/ListBuilder.css'
-import { useList } from "./hooks/useList"
+import { useList } from "hooks/useList"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
@@ -23,7 +23,6 @@ function ListBuilder({ setQuery }:{
 
   return (
     <div className="listbuilder">
-      <h2>List builder:</h2>
       { listItemComponents }
       <button onClick={() => addListItem()}>
         <FontAwesomeIcon icon={faPlus} />

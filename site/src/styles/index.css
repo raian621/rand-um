@@ -72,3 +72,7 @@ input {
   padding: 0.7em;
   border: solid var(--accent-color) 2px;
 }
+
+.invisible {
+  display: none
+}

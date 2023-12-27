@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
 import 'styles/ListBuilder.css'
+import { TenorGifPicker } from "./components/TenorGifPicker"
 
 function queryString(list: string[]): string {
   let qstring = "image="
@@ -27,10 +28,13 @@ export default function ImagesBuilder({ setQuery } : {
 
   return (
     <div className="listbuilder">
-      { listItemComponents }
+      <div className="list">
+        { listItemComponents }
+      </div>
       <button onClick={() => addListItem()}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
+      <TenorGifPicker addListItem={addListItem}/>
     </div>
   )
 }

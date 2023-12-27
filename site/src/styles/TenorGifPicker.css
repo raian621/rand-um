@@ -1,0 +1,80 @@
+.tenor-gif-picker {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  margin: 10px 0;
+  --inner-margin: 20px;
+  border-radius: 20px;
+  border: solid black 2px;
+}
+
+.tenor-gif-gallery {
+  display: flex;
+  height: 500px;
+  overflow: scroll;
+  padding: 10px;
+  background-color: rgb(206, 206, 206);
+}
+
+.tenor-gif-gallery-col {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+.tenor-attribution {
+  height: 2em;
+  align-self: flex-end;
+  margin: var(--inner-margin);
+}
+
+.tenor-gif {
+  transition: filter 300ms;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.tenor-gif:hover {
+  outline: solid blue 3px;
+  outline-offset: -3px;
+  filter: brightness(130%)
+}
+
+.tenor-search-box {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.tenor-search-box input {
+  margin: var(--inner-margin);
+  width: 100%;
+}
+
+.tenor-search-box svg {
+  position: absolute;
+  right: calc(var(--inner-margin) + 10px);
+  pointer-events: none;
+}
+
+.tenor-gif-placeholder {
+  background: linear-gradient(0deg, grey 30%, white 100%);
+  margin: 10px;
+  background-size: 200% 200%;
+  border-radius: 10px;
+  width: calc(100% - var(--inner-margin));
+  animation: gradient 2s ease-in-out infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 0% 100%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

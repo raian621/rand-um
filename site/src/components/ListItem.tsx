@@ -1,4 +1,4 @@
-import { faX } from "@fortawesome/free-solid-svg-icons"
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export function ListItem({listKey, value, setListItem, deleteListItem} : {
@@ -15,7 +15,7 @@ export function ListItem({listKey, value, setListItem, deleteListItem} : {
         onChange={e => setListItem(listKey, e.target.value)}
       />
       <button onClick={() => deleteListItem(listKey)}>
-        <FontAwesomeIcon icon={faX}/>
+        <FontAwesomeIcon icon={faTrashAlt}/>
       </button>
     </div>
   )
