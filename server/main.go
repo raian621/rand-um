@@ -6,11 +6,6 @@ import (
 )
 
 func main() {
-	// if len(os.Args) < 5 {
-	// 	fmt.Printf("Usage: %s <host> <port> <site directory> <protocol(http|https)> [keyfile] [certfile]", os.Args[0])
-	// 	os.Exit(1)
-	// }
-
 	var host, port, siteDir, protocol, certfile, keyfile string
 	var saveCerts bool
 
@@ -18,8 +13,8 @@ func main() {
 	flag.StringVar(&port, "port", "443", "TCP port to listen on")
 	flag.StringVar(&siteDir, "static", "../site/dist", "Path to files used for website")
 	flag.StringVar(&protocol, "protocol", "http", "Protocol to use on the server")
-	flag.StringVar(&certfile, "cert", "", "Protocol to use on the server")
-	flag.StringVar(&keyfile, "key", "", "Protocol to use on the server")
+	flag.StringVar(&certfile, "cert", "", "Path to cert file")
+	flag.StringVar(&keyfile, "key", "", "Path to key file")
 	flag.BoolVar(&saveCerts, "save", false, "Save generated certs")
 	flag.Parse()
 

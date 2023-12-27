@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.listbuilder button {
+  border: solid black 2px;
+}
+
 .listitem {
   width: 100%;
   display: flex;

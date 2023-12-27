@@ -17,10 +17,8 @@ function App() {
       <h1>
         Random
         <QueryTypeSelector setQueryType={setRandomQueryType}/>
-        Query URL Generator</h1>
-      <p>Since most social preview implementations cache social previews for 
-      each URL, in order to ensure a unique query we have to provide a unique URL
-      every time we want to create a new social preview.</p>
+        Query URL Generator
+      </h1>
       <GeneratedURL
         uniqueString={uniqueString}
         refreshUniqueString={() => { setUniqueString(generateUniqueString(Date.now())) }}

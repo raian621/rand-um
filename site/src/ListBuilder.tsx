@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 import 'styles/ListBuilder.css'
-import { useList } from "./hooks/useList"
+import { useList } from "hooks/useList"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
