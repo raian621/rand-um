@@ -56,3 +56,23 @@
   right: calc(var(--inner-margin) + 10px);
   pointer-events: none;
 }
+
+.tenor-gif-placeholder {
+  background: linear-gradient(0deg, grey 30%, white 100%);
+  margin: 10px;
+  background-size: 200% 200%;
+  border-radius: 10px;
+  animation: gradient 2s ease-in-out infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 0% 100%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
