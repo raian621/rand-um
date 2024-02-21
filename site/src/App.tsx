@@ -7,6 +7,7 @@ import ImagesBuilder from './ImagesBuilder';
 import GeneratedURL from 'components/GeneratedURL';
 import generateUniqueString from 'util/uniqueString';
 import { Header } from './components/Header';
+import GitHubEarmark from './GitHubEarmark';
 
 function App() {
   const [randomQueryType, setRandomQueryType] = useState("images")
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <>
+      <GitHubEarmark/>
       <Header/>
       <h2>
         Generate a link for a random
