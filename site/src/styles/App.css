@@ -3,3 +3,7 @@
   margin: 0 auto;
   text-align: center;
 }
+
+button {
+  border: solid black 2px;
+}

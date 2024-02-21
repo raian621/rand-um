@@ -1,5 +1,8 @@
 .imagesbuilder {
     display: flex;
     flex-direction: column;
-    
+}
+
+.imagesbuilder button {
+    border: solid black 2px;
 }
