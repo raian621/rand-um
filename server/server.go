@@ -108,10 +108,13 @@ func runQuery(queryMap *map[string]string) (ogpFields *OgpFields, err error) {
 		end, _err := strconv.ParseInt(elements[1], 10, 64)
 		err = errors.Join(err, _err)
 
-		rvalue := randomizer.Range(int(start), int(end))
+		rvalue, newerr := randomizer.Range(int(start), int(end))
+		errors.Join(err, newerr)
 
 		if err == nil {
 			ogpFields.Description = fmt.Sprint(rvalue)
+		} else {
+			return nil, err
 		}
 	}
 
