@@ -10,7 +10,7 @@ func main() {
 	var saveCerts bool
 
 	flag.StringVar(&host, "host", "0.0.0.0", "Address to host the server at")
-	flag.StringVar(&port, "port", "443", "TCP port to listen on")
+	flag.StringVar(&port, "port", "8000", "TCP port to listen on")
 	flag.StringVar(&siteDir, "static", "../site/dist", "Path to files used for website")
 	flag.StringVar(&protocol, "protocol", "http", "Protocol to use on the server")
 	flag.StringVar(&certfile, "cert", "", "Path to cert file")

@@ -10,9 +10,7 @@
 
   {{if .ImageURL}}
   <meta name="twitter:image:src" content="{{.ImageURL}}">
-  {{end}}
-  <meta name="twitter:site" content="@rand-um">
-  <meta name="twitter:card" content="summary_large_image">
+  {{else}}
   {{if .Title}}
   <meta name="twitter:title" content="{{.Title}}">
   {{end}}
@@ -26,7 +24,10 @@
   {{if .Title}}
   <meta property="og:title" content="{{.Title}}" />
   {{end}}
-
+  <meta name="twitter:card" content="summary_large_image">
+  {{end}}
+  <meta name="twitter:site" content="@rand-um">
+  
   {{if .Description}}
   <meta property="og:description" content="{{.Description}}" />
   {{end}}
